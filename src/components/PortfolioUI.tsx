@@ -1,0 +1,9 @@
+import Link from 'next/link';
+import type { ReactNode } from 'react';
+import Icon from './Icon';
+import { contactLinks } from '@/lib/data';
+export function ButtonLink({href,children,secondary=false}:{href:string;children:ReactNode;secondary?:boolean}){return <Link prefetch={false} className={`button ${secondary?'button-secondary':'button-primary'}`} href={href}>{children}<Icon name="arrow" width="18" height="18"/></Link>}
+export function SectionHeading({label,title,description}:{label:string;title:string;description?:string}){return <div className="section-heading"><span className="eyebrow">{label}</span><h2>{title}</h2>{description&&<p className="muted">{description}</p>}</div>}
+export function PageHeading({label,title,description}:{label:string;title:string;description:string}){return <div className="page-heading"><span className="eyebrow">{label}</span><h1>{title}</h1><p className="muted">{description}</p></div>}
+export function SocialLinks({cards=false}:{cards?:boolean}){const contacts=contactLinks.filter(c=>c.href);if(!contacts.length)return null;return <div className={cards?'contact-channels':'social-links'} aria-label="Enlaces de contacto">{contacts.map(c=><a key={c.field} href={c.href} aria-label={cards?undefined:c.label} target={c.field==='email'?undefined:'_blank'} rel={c.field==='email'?undefined:'noopener noreferrer'} className={cards?'contact-channel surface':'icon-button'}><Icon name={c.field==='email'?'mail':c.field==='github'?'github':'linkedin'}/>{cards&&<span><strong>{c.label}</strong><small>{c.value}</small></span>}{cards&&<Icon name="arrow"/>}</a>)}</div>}
+export function ContactBanner(){return <section className="contact-banner surface"><div><span className="eyebrow">Conectemos</span><h2>¿Quieres contactarme?</h2><p className="muted">Puedes escribirme por correo o encontrar mis proyectos en GitHub.</p></div><ButtonLink href="/contact">Ir a Contacto</ButtonLink></section>}

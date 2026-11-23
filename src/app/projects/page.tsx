@@ -1,0 +1,6 @@
+import type { Metadata } from 'next';
+import { projects,personalInfo } from '@/lib/data';
+import ProjectCard from '@/components/ProjectCard';
+import { PageHeading,ContactBanner } from '@/components/PortfolioUI';
+export const metadata:Metadata={title:'Proyectos',description:'Proyectos académicos de Adriana Camila: NeuroTutor, Encuestas IoT, microservicios, aplicaciones móviles y autenticación web.',alternates:{canonical:'/projects'},openGraph:{title:`Proyectos | ${personalInfo.shortName}`,description:'Desarrollo web, backend y móvil en seis proyectos académicos.',url:'/projects'}};
+export default function ProjectsPage(){return <div className="shell page-shell"><PageHeading label="Trabajo académico seleccionado" title="Mis proyectos" description="Aquí reúno seis proyectos académicos de desarrollo web, backend y aplicaciones móviles. En cada ficha explico el alcance, las tecnologías y mi participación."/><p className="collection-note">Las imágenes son portadas de los proyectos; todavía no incluyen capturas de las aplicaciones.</p><section aria-label="Colección de proyectos académicos" className="projects-grid">{projects.map((project,index)=><ProjectCard key={project.slug} project={project} index={index} headingLevel={2} priority={index===0}/>)}</section><ContactBanner/></div>}

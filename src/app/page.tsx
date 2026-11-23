@@ -1,69 +1,17 @@
-import Image from "next/image";
-
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { projects, personalInfo, learningTopics } from '@/lib/data';
+import ProjectCard from '@/components/ProjectCard';
+import HeroIllustration from '@/components/HeroIllustration';
+import Icon from '@/components/Icon';
+import { ButtonLink, SectionHeading, SocialLinks, ContactBanner } from '@/components/PortfolioUI';
+export const metadata: Metadata = { title: 'Inicio', description: personalInfo.description, alternates: { canonical: '/' }, openGraph: { title: `${personalInfo.name} | Full Stack en formación`, description: personalInfo.description, url: '/' } };
 export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+  return <>
+    <div className="shell"><section className="hero"><div className="hero-copy"><span className="eyebrow">Adriana Camila · Portafolio personal</span><h1>Hola, soy Adriana</h1><p className="hero-profession">Full Stack Developer <span>en formación</span></p><p className="hero-description muted">{personalInfo.hero.description}</p><div className="button-row"><ButtonLink href="/projects">Ver mis proyectos</ButtonLink><ButtonLink href="/contact" secondary>Contactarme</ButtonLink></div><SocialLinks /><p className="hero-education">Diseño y Desarrollo de Software <span aria-hidden="true">—</span> TECSUP</p></div><div className="hero-art-column"><HeroIllustration /><span className="hero-vertical" aria-hidden="true">FRONTEND / BACKEND / MOBILE</span></div></section></div>
+    <div className="discipline-strip"><div className="shell"><span>Frontend</span><span>Backend</span><span>Bases de datos</span><span>Desarrollo móvil</span></div></div>
+    <section className="shell home-work"><div className="section-topline"><SectionHeading label="Proyectos académicos" title="Mis proyectos" description="Estos son algunos de los proyectos académicos en los que he trabajado." /><Link prefetch={false} href="/projects" className="text-link">Explorar los seis proyectos <Icon name="arrow" width="18" /></Link></div><div className="featured-projects">{projects.filter(p => p.featured).map((project,index) => <ProjectCard key={project.slug} project={project} index={index} />)}</div></section>
+    <section className="about-band"><div className="shell about-editorial"><div className="editorial-label"><span className="eyebrow">Sobre mí</span><span className="editorial-monogram" aria-hidden="true">AC</span></div><div><h2>Mi formación en desarrollo de software</h2><p className="muted">{personalInfo.bio}</p><Link prefetch={false} className="text-link" href="/about">Un poco más sobre mí <Icon name="arrow" width="18" /></Link></div></div></section>
+    <section className="shell focus-section"><SectionHeading label="Áreas de interés" title="En qué me estoy formando" /><div className="focus-grid">{learningTopics.map((topic,index) => <article className="focus-item" key={topic.title}><span className="focus-number">0{index+1}</span><Icon name={topic.icon} /><h3>{topic.title}</h3><p className="muted">{topic.description}</p><small>{topic.stack}</small></article>)}</div><ContactBanner /></section>
+  </>;
 }

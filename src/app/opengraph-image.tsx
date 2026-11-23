@@ -1,0 +1,5 @@
+import { ImageResponse } from 'next/og';
+import { personalInfo } from '@/lib/data';
+export const alt='Adriana Camila Chinchayhuara Chumpitaz — Full Stack Developer en formación';
+export const size={width:1200,height:630};export const contentType='image/png';
+export default function Image(){return new ImageResponse(<div style={{display:'flex',flexDirection:'column',justifyContent:'center',padding:85,width:'100%',height:'100%',background:'#fbf6f3',color:'#283043',fontFamily:'serif'}}><div style={{display:'flex',fontFamily:'sans-serif',color:'#84556c',fontSize:22,letterSpacing:5,marginBottom:32}}>PORTAFOLIO / DESARROLLO DE SOFTWARE</div><div style={{display:'flex',fontSize:88}}>Adriana Camila</div><div style={{display:'flex',fontSize:51,color:'#84556c',marginTop:10}}>Chinchayhuara Chumpitaz</div><div style={{display:'flex',fontFamily:'sans-serif',fontSize:25,marginTop:37}}>{personalInfo.title} · TECSUP</div><div style={{display:'flex',height:2,background:'#ddcccf',marginTop:42,width:'100%'}}/></div>,size)}
