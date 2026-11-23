@@ -82,7 +82,7 @@ export const personalInfo = {
   skills: ['Java', 'JavaScript', 'Python', 'React', 'Node.js', 'Spring Boot', 'SQL', 'MySQL', 'Oracle', 'MongoDB', 'APIs REST', 'Git', 'Postman', 'Figma'],
   experience: [] as { role: string; organization: string; period: string }[],
   // Dominio existente conservado. Actualizar únicamente cuando Adriana lo solicite.
-  siteUrl: 'https://tuportafolio.com',
+  siteUrl: 'https://adriana-portfolio.duckdns.org',
 };
 
 export const learningTopics = [
